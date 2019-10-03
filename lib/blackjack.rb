@@ -1,6 +1,6 @@
 def welcome
   # code #welcome here
-  puts "hello"
+  puts "Welcome to the Blackjack Table."
 end
 
 def deal_card
@@ -23,9 +23,12 @@ def end_game
   # code #end_game here
 end
 
-def initial_round
+def initial_round(num)
   # code #initial_round here
+  puts num**2
 end
+
+initial_round(9) #=> 81
 
 def hit?
   # code hit? here
