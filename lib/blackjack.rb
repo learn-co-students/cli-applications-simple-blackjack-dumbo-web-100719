@@ -3,7 +3,7 @@ def welcome
 end
 
 def deal_card
-  return rand(1..11)
+   rand(1..11)
 end
 
 def display_card_total(card_total)
@@ -16,7 +16,7 @@ def prompt_user
 end
 
 def get_user_input
-  return gets.chomp
+   gets.chomp.strip
 end
 
 def end_game(card_total)
@@ -24,13 +24,9 @@ def end_game(card_total)
 end
 
 def initial_round
-  s=0
-  2.times do
-    s=deal_card
-  end
-
-  #deal_card
-  display_card_total(s)
+  t_cards= deal_card+deal_card
+  display_card_total(t_cards)
+  return t_cards
 end
 
 def hit?(card_total)
@@ -40,12 +36,12 @@ def hit?(card_total)
   if response=='h' then
     card_total+=deal_card
   elsif response=='s' then
-    return card_total
-  elsif response!='h' || response!='s' then
+    card_total
+  else
         invalid_command
-        prompt_user
-    
-
+        hit?(card_total)
+    end
+  card_total
 end
 
 def invalid_command
@@ -58,5 +54,11 @@ end
 #####################################################
 
 def runner
-
+  welcome
+  card_total=initial_round
+  until card_total>21
+    card_total= hit?(card_total)
+    display_card_total(card_total)
+  end
+end_game(card_total)
 end
